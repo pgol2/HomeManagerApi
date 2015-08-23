@@ -23,7 +23,7 @@ describe('Expense Controller Tests:', function () {
             };
 
 
-            var bookController = require('../controllers/expenseController')(Expense);
+            var bookController = require('../../controllers/expenseController')(Expense);
 
             bookController.post(req, res);
 
