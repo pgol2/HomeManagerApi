@@ -19,8 +19,15 @@ var bookController = function (Expense) {
     var post = function (req, res) {
         var expense = new Expense(req.body);
 
+        if(!req.body.title) {
+            res.status(400);
+            //TODO add some middleweare for universal error formatting
+            res.send('Title is required');
+        }
+
         expense.save();
-        res.status(201).send(expense);
+        res.status(201);
+        res.send(expense);
     };
 
 

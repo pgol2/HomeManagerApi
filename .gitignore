@@ -11,3 +11,4 @@ configdev.json
 config.js
 *.html
 .settings
+.idea/workspace.xml
