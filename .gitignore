@@ -1,3 +1,4 @@
+app/src/api
 logs/*
 !.gitkeep
 node_modules/
@@ -6,9 +7,10 @@ tmp
 .DS_Store
 .idea
 style.css.map
-configdev.json
 *.css
 config.js
-*.html
-.settings
-.idea/workspace.xml
+gulpconfig.json
+npm-debug.log
+typings
+*.swp
+*.swo
