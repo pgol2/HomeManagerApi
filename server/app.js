@@ -4,12 +4,15 @@ var bodyParser = require('body-parser');
 var Expense = require('../models/expenseModel');
 
 
-var db;
-if(process.env.ENV == 'Test') {
-    db = mongoose.connect('mongodb://localhost/expenses_test');
-} else {
-    db = mongoose.connect('mongodb://localhost/expenses');
-}
+var db = mongoose.connect(process.env.db, function (error) {
+    if(error) {
+        console.error('mongo Error');
+        console.error(error);
+        return error;
+    }
+    console.log('mongo connected');
+
+});
 
 var app = express();
 var port = process.env.PORT || 3000;

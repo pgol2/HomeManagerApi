@@ -10,7 +10,8 @@ gulp.task('default', function () {
         script: 'server/app.js',
         ext: 'js',
         env: {
-            PORT: 8000
+            PORT: 8000,
+            db: 'mongodb://localhost/expenses'
         },
         ignore: ['./node_modules']
     })
@@ -23,7 +24,8 @@ gulp.task('default', function () {
 gulp.task('test', function () {
     env({
         vars: {
-            ENV: 'Test'
+            ENV: 'Test',
+            db: 'mongodb://localhost/expenses_test'
         }
     });
     gulp.src('tests/**/*.js', {read: false})
