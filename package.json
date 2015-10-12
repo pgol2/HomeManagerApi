@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
-    "start": "node server/app.js"
+    "start": "node app.js",
+    "postinstall": "./node_modules/.bin/gulp apidoc"
   },
   "author": "",
   "license": "ISC",

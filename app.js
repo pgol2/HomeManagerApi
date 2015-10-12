@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var Expense = require('models/expenseModel');
+var Expense = require('./models/expenseModel');
 
 
 var db = mongoose.connect(process.env.db, function (error) {
@@ -20,16 +20,11 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-var expenseRouter = require('routes/expenseRoutes')(Expense);
+var expenseRouter = require('./routes/expenseRoutes')(Expense);
 
 
-
-console.log(__dirname + '/docs')
-app.use('/docs', function (req, res) {
-    console.log(req);
-    express.static(__dirname + '/docs');
-});
-
+console.log(__dirname + '/docs');
+app.use('/docs', express.static(__dirname + '/docs'));
 app.use('/api/expenses', expenseRouter);
 
 
