@@ -10,7 +10,7 @@ var routes = function (Expense) {
     router.route('/')
         .get(expenseController.get)
     /**
-     * @api {post} /expense add new expense
+     * @api {post} /expenses add new expense
      * @apiName PostExpense
      * @apiGroup Expense
      *
@@ -25,7 +25,7 @@ var routes = function (Expense) {
     //TODO think about better way for handling these callbacks (maybe some middleweare?)
     router.route('/:id')
     /**
-     * @api {get} /expense/:id Requests expense information
+     * @api {get} /expenses/:id Requests expense information
      * @apiName GetExpense
      * @apiGroup Expense
      *
