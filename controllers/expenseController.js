@@ -1,4 +1,4 @@
-var bookController = function (Expense) {
+var expenseController = function (Expense) {
 
     var get = function (req, res) {
         var query = {};
@@ -7,11 +7,11 @@ var bookController = function (Expense) {
             query.category = req.query.category;
         }
 
-        Expense.find(query, function (err, books) {
+        Expense.find(query, function (err, items) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.json(books);
+                res.json(items);
             }
         });
     };
@@ -37,4 +37,4 @@ var bookController = function (Expense) {
     };
 };
 
-module.exports = bookController;
+module.exports = expenseController;
