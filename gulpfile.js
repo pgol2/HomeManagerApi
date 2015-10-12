@@ -37,5 +37,9 @@ gulp.task('test', function () {
         }
     });
     gulp.src('tests/**/*.js', {read: false})
-        .pipe(gulpMocha({reporter: 'nyan'}));
+        .pipe(gulpMocha({reporter: 'nyan'}))
+        //TODO tmp fix, mogo connection should be closed properly
+        .once('end', function () {
+            process.exit();
+        });
 });
