@@ -3,11 +3,12 @@ var nodemon = require('gulp-nodemon');
 var gulpMocha = require('gulp-mocha');
 var env = require('gulp-env');
 var supertest = require('supertest');
+var apidoc = require('gulp-apidoc');
 
 
 gulp.task('default', function () {
     nodemon({
-        script: 'server/app.js',
+        script: 'app.js',
         ext: 'js',
         env: {
             PORT: 8000,
@@ -18,6 +19,13 @@ gulp.task('default', function () {
     .on('restart', function () {
         console.log('Restarting');
     });
+});
+
+gulp.task('apidoc', function (done) {
+    apidoc({
+        src: 'routes/',
+        dest: 'docs/'
+    }, done)
 });
 
 
