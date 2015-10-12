@@ -28,5 +28,9 @@
   },
   "devDependencies": {
 
+  },
+  "apidoc": {
+    "title": "Home Manager APi",
+    "url" : "https://homemanager.herokuapp.com/api"
   }
 }
