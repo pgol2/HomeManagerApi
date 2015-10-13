@@ -22,7 +22,7 @@ var expenseController = function (Expense) {
         if(!req.body.title) {
             res.status(400);
             //TODO add some middleweare for universal error formatting
-            res.send('Title is required');
+            res.send({title: 'title is required'});
         }
 
         expense.save();

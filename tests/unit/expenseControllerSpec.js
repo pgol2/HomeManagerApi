@@ -23,12 +23,11 @@ describe('Expense Controller Tests:', function () {
             };
 
 
-            var bookController = require('../../controllers/expenseController')(Expense);
+            var expenseController = require('../../controllers/expenseController')(Expense);
 
-            bookController.post(req, res);
+            expenseController.post(req, res);
 
-            res.status.calledWith(400).should.equal(true, 'Bad status ' + res.status.args[0][0]);
-            res.send.calledWith('Title is required').should.equal(true);
+            res.status.calledWith(400).should.equal(true);
 
 
         })
