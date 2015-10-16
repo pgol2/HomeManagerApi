@@ -1,5 +1,5 @@
 {
-  "name": "billsManager",
+  "name": "HomeManagerApi",
   "version": "1.0.0",
   "engines": {
     "node": "4.0.0"
@@ -29,7 +29,7 @@
   },
   "devDependencies": {},
   "apidoc": {
-    "title": "Home Manager APi",
+    "title": "Home Manager API",
     "url": "https://homemanager.herokuapp.com/api"
   }
 }
