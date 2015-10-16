@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var gulpMocha = require('gulp-mocha');
 var env = require('gulp-env');
-var supertest = require('supertest');
+//var supertest = require('supertest');
 var apidoc = require('gulp-apidoc');
 
 

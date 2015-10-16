@@ -1,11 +1,10 @@
-var should = require('should');
 var sinon = require('sinon');
 
 describe('Expense Controller Tests:', function () {
 
     describe('Post', function () {
         it('should not allow empty title on post', function () {
-            var Expense = function (expense) {
+            var Expense = function () {
                 this.save = function () {
                 };
             };

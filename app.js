@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var Expense = require('./models/expenseModel');
 
 
-var db = mongoose.connect(process.env.db, function (error) {
-    if(error) {
+mongoose.connect(process.env.db, function (error) {
+    if (error) {
         console.error('mongo Error');
         console.error(error);
         return error;
