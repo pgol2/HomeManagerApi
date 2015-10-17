@@ -1,4 +1,5 @@
 var sinon = require('sinon');
+var expect = require('chai').expect;
 
 describe('Expense Controller Tests:', function () {
 
@@ -26,8 +27,7 @@ describe('Expense Controller Tests:', function () {
 
             expenseController.post(req, res);
 
-            res.status.calledWith(400).should.equal(true);
-
+            expect(res.status.calledWith(400)).to.equal(true);
 
         })
     });

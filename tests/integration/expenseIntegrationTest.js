@@ -1,4 +1,4 @@
-var should = require('should');
+var expect = require('chai').expect;
 var request = require('supertest');
 var app = require('../../app.js');
 var Expense = require('mongoose').model('Expense');
@@ -20,7 +20,7 @@ describe('Book Crud test', function () {
             .send(expensePost)
             .expect(200)
             .end(function (err, results) {
-                results.body.should.have.property('_id');
+                expect(results.body).to.have.property('_id');
                 done();
             });
 
