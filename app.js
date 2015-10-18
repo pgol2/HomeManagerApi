@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var Expense = require('./models/expenseModel');
+var Expense = require('./models/expense');
 
 
 mongoose.connect(process.env.db, function (error) {
@@ -32,6 +32,14 @@ app.use('/api/expenses', expenseRouter);
 
 app.listen(port, function () {
     console.log('Running on port ' + port);
+});
+
+
+process.on('SIGINT', function () {
+    mongoose.connection.close(function () {
+        console.log('Mongoose connection closed');
+        process.exit(0);
+    });
 });
 
 

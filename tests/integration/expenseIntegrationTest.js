@@ -1,8 +1,10 @@
 var expect = require('chai').expect;
 var request = require('supertest');
 var app = require('../../app.js');
-var Expense = require('mongoose').model('Expense');
+var mongoose = require('mongoose');
+var Expense = mongoose.model('Expense');
 var agent = request.agent(app);
+
 
 
 describe('Book Crud test', function () {
