@@ -7,12 +7,8 @@ var expenseController = function (Expense) {
             query.category = req.query.category;
         }
 
-        Expense.find(query, function (err, items) {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                res.json(items);
-            }
+        Expense.find(query).then(function (items) {
+            res.json(items);
         });
     };
 
