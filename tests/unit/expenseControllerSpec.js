@@ -7,7 +7,8 @@ describe('Expense Controller Tests:', function () {
         it('should not allow empty title on post', function () {
             var Expense = function () {
                 this.save = function () {
-                };
+                    return Promise.resolve({});
+                }
             };
 
             var req = {

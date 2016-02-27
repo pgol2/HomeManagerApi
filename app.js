@@ -25,7 +25,7 @@ var expenseRouter = require('./routes/expenseRoutes')(Expense);
 
 console.log(__dirname + '/docs');
 app.use('/docs', express.static(__dirname + '/docs'));
-app.use('/api/expenses', expenseRouter);
+app.use('/api', expenseRouter);
 
 
 

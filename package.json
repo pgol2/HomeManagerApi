@@ -10,7 +10,7 @@
     "start": "node app.js",
     "dev": "db='mongodb://localhost/expenses' PORT=8000 nodemon ./app.js",
     "docs": "apidoc -i routes/ -o docs/",
-    "test": "ENV=Test db='mongodb://localhost/expenses_test' mocha ./tests --recursive"
+    "test": "ENV=test db='mongodb://localhost/expenses_test' mocha ./tests --recursive"
   },
   "author": "",
   "license": "ISC",
@@ -30,7 +30,6 @@
     "nodemon": "^1.8.1"
   },
   "apidoc": {
-    "title": "Home Manager API",
-    "url": "https://homemanager.herokuapp.com/api"
+    "title": "Home Manager API"
   }
 }
