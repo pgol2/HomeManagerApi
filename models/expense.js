@@ -1,10 +1,12 @@
-var mongoose = require('../lib/mongoose');
+const mongoose = require('../lib/mongoose');
+const Schema = mongoose.Schema;
 
-var Schema = mongoose.Schema;
 
-
-var Expense = new Schema({
-    title: String,
+const Expense = new Schema({
+    title: {
+      type:  String,
+      required: '{PATH} is required!'
+    },
     category: String,
     creator: String,
     created: { type: Date, default: Date.now },

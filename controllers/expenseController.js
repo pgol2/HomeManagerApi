@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 var expenseController = function (Expense) {
 
   var get = function (req, res) {
@@ -16,15 +18,13 @@ var expenseController = function (Expense) {
 
     var expense = new Expense(req.body);
 
-    if(!req.body.title) {
-      res.status(400);
-      //TODO add some middleweare for universal error formatting
-      res.send({title: 'title is required'});
-    }
-
     expense.save().then(() => {
       res.status(201);
       res.send(expense);
+    }).catch(err => {
+      console.log('err');
+      console.log();
+      res.status(400).json(_.get(err, 'errors.title.message', 'error'));
     });
   };
 
