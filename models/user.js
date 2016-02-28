@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 require('mongoose').Promise = Promise;
 
-var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt-nodejs');
+const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
+const SALT_FACTOR = 10;
 
 
 var User = new Schema({
@@ -10,14 +11,19 @@ var User = new Schema({
     password: String
 });
 
+User.pre('save', function (next) {
+  var user = this;
 
-User.methods.generateHash = function (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync((8)), null);
-};
+  if (!user.isModified('password')) next();
 
-User.methods.validPassword = function (password) {
-    return bcrypt.compareSync(password, this.local.password);
-};
-
+  bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
+    if (err) next(err);
+    bcrypt.hash(user.password, salt, (err, hash) => {
+      if (err) next(err);
+      user.password = hash;
+      next();
+    });
+  });
+});
 
 module.exports = mongoose.model('User', User);

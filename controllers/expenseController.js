@@ -22,8 +22,6 @@ var expenseController = function (Expense) {
       res.status(201);
       res.send(expense);
     }).catch(err => {
-      console.log('err');
-      console.log();
       res.status(400).json(_.get(err, 'errors.title.message', 'error'));
     });
   };
