@@ -1,6 +1,16 @@
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
+const config = require('../config');
+const jwt = require('jsonwebtoken');
 
+
+var getPayload = function (user) {
+  return {
+    email: user.email,
+    aud: config.jwt.audience,
+    iss: config.jwt.issuer
+  }
+};
 
 var usersController = function (User) {
 
@@ -25,12 +35,20 @@ var usersController = function (User) {
     User.findOne({
       email: req.body.email
     }).then(user => {
-      //@TODO move it to user model
-      if (user && bcrypt.compareSync(req.body.password, user.password)) {
-        res.json('ok');
-      } else {
-        res.json('not ok');
-      }
+      user.checkPassword(req.body.password).then(isMatch => {
+
+        var token = jwt.sign(getPayload(user), config.secrets.jwt, {
+          expiresIn: 60 * 60 * 5
+        });
+
+        if (user && isMatch) {
+          res.json({
+            token: token
+          });
+        } else {
+          res.send(401);
+        }
+      }).catch(err => next(err));
     });
   };
 

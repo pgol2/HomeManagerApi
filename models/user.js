@@ -7,8 +7,16 @@ const SALT_FACTOR = 10;
 
 
 var User = new Schema({
-    email: String,
-    password: String
+  email: String,
+  password: String,
+  loginAttempts: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  lockUntil: {
+    type: Number
+  }
 });
 
 User.pre('save', function (next) {
@@ -25,5 +33,15 @@ User.pre('save', function (next) {
     });
   });
 });
+
+
+User.methods.checkPassword = function (password) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, this.password, function (err, isMatch) {
+      if (err) reject(err);
+      resolve(isMatch);
+    })
+  });
+};
 
 module.exports = mongoose.model('User', User);

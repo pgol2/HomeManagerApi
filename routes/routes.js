@@ -1,5 +1,6 @@
-var router = require('express').Router();
-
+const router = require('express').Router();
+const passport = require('passport');
+const auth = passport.authenticate('jwt', {session: false});
 
 var routes = function (Expense, User) {
 
@@ -7,13 +8,15 @@ var routes = function (Expense, User) {
   var usersController = require('../controllers/usersController')(User);
 
 
-  router.route('/expenses').get(expenseController.getList);
-  router.route('/expenses').post(expenseController.post);
-  router.route('/expenses/:id').get(expenseController.getOne);
-  router.route('/expenses/:id').put(expenseController.update);
-  router.route('/expenses/:id').delete(expenseController.remove);
-  router.route('/users').post(usersController.insert);
-  router.route('/login').post(usersController.login);
+  router
+    .get('/expenses', auth, expenseController.getList)
+    .get('/expenses', auth, expenseController.getList)
+    .post('/expenses', auth, expenseController.post)
+    .get('/expenses/:id', auth, expenseController.getOne)
+    .put('/expenses/:id', auth, expenseController.update)
+    .delete('/expenses/:id', auth, expenseController.remove)
+    .post('/users', usersController.insert)
+    .post('/login', usersController.login)
 
   return router;
 

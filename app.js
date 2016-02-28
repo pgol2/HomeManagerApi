@@ -2,7 +2,9 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 const config = require('./config');
-const db = require('./config/db');
+
+const db = require('./config/db').init();
+require('./config/passport').init();
 
 const Expense = require('./models/expense');
 const User = require('./models/user');
